@@ -1,0 +1,439 @@
+<html>
+    <head>
+           <link href="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/style.css" rel="stylesheet">
+   <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/SYMBOL.webp">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+      .nav-botones {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+
+ 
+
+    .btn-cute svg {
+      width: 20px;
+      height: 20px;
+      stroke: #444;
+    }
+
+    /* Secciones personalizadas */
+    .seccion-electronica {
+      height: 400px;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 15px;
+      background: #e6f7ff;
+    }
+
+    .seccion-fisica {
+      height: 400px;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 15px;
+      background: #e6ffe6;
+    }
+
+    .seccion-matematicas {
+      height: 400px;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 15px;
+      background: #fff5e6;
+    }
+
+    /* Scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f9f9f9;
+  }
+
+  .seccion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 10%;
+    background: url('https://www.transparenttextures.com/patterns/blueprint.png'); /* fondo técnico */
+    background-color: #fff;
+    min-height: 100vh;
+  }
+
+  .imagen img {
+    width: 400px;
+    border-radius: 10px;
+    opacity: 0; /* invisible al inicio */
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .imagen.visible img {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .texto {
+    max-width: 500px;
+  }
+
+  .texto h3 {
+    color: #6ab04c;
+    font-weight: 600;
+  }
+
+  .texto h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
+  .texto p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .texto button {
+    margin-top: 20px;
+    background: #6ab04c;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .texto button:hover {
+    background: #4b8f34;
+        .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+
+  }
+  /* Secciones generales */
+.seccion-electronica,
+.seccion-fisica,
+.seccion-matematicas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 60px auto;
+  padding: 40px;
+  max-width: 1100px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Alternar orden en Física para que no se vea todo igual */
+.seccion-fisica {
+  flex-direction: row-reverse;
+}
+
+/* Imagen */
+.img-seccion {
+  width: 40%;
+  max-width: 400px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* Texto */
+.contenido-seccion {
+  width: 55%;
+}
+
+.contenido-seccion h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.contenido-seccion p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Botón */
+.btn-cute {
+  display: inline-block;
+  background: #ff9e01;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-cute:hover {
+  background: #fbe70c;
+}
+
+</style>
+    </head>
+    <body>
+       <div class="empresas">
+            <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/UASLP.webp" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/DRAGON.webp" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/cbtis.webp" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/LOGO.webp" alt="">
+        </div>
+        <div class="social-icons">
+    <a href="https://www.tiktok.com/@esc_peques_ingenieros?_t=ZS-8zp11YUFrcN&_r=1" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://instagram.com" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/@EscueladePequenosIngenierosAC" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.facebook.com/share/1B8jCVLN8q/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://whatsapp.com/channel/0029VbAhNNRLY6d5JWVAqa1y" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://x.com" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
+  </div>
+       <header class="topbar">
+<div class="container">
+<!-- Logo / marca -->
+<a href="#" class="brand">
+<span class="logo" aria-hidden></span>
+<span>Escuela de Pequeños Ingenieros</span>
+</a>
+
+
+<!-- Toggle visible en móvil (sin JS - usa atributo data para control si decides agregar JS) -->
+<button class="menu-toggle" aria-expanded="false" aria-controls="main-menu" onclick="document.getElementById('main-menu').classList.toggle('show'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')">
+☰
+</button>
+
+
+
+<!-- Menú principal -->
+<nav aria-label="Principal">
+<ul class="menu" id="main-menu">
+<li><a href="index.html">Inicio</a></li>
+  <li>
+    <a href="talleres.html">Talleres</a>
+    
+  </li>
+  <li>
+    <a href="asfisica.html">Asesorías</a>
+    
+  </li>
+      <li>
+    <a href="#">Deportes</a>
+    
+  </li>
+<li><a href="https://www.google.com/maps/place/Escuela+de+Peque%C3%B1os+Ingenieros/@21.255386,-98.7524338,17z/data=!3m1!4b1!4m6!3m5!1s0x85d6ebd2721c504d:0x6fce41e1729c442a!8m2!3d21.255386!4d-98.7498589!16s%2Fg%2F11wj5rdzx2?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D">Encuéntranos</a></li>
+</ul>
+</nav>
+</div>
+</header>
+    <section class="seccionVideoFondo">
+  <video autoplay muted loop playsinline class="video-fondo">
+    <source src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/fondo_electronic.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+  <div class="contenidoVideoFondo">
+    <h1 id="textoCambiante">Bienvenido a nuestras instalaciones</h1>
+    <p id="textoCambiante2">Conoce el lugar donde nace la innovación</p>
+    <a href="https://www.google.com/maps/place/Escuela+de+Peque%C3%B1os+Ingenieros/@21.255386,-98.7524338,17z/data=!3m1!4b1!4m6!3m5!1s0x85d6ebd2721c504d:0x6fce41e1729c442a!8m2!3d21.255386!4d-98.7498589!16s%2Fg%2F11wj5rdzx2?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="ctas">Mira nuestra Ubicación</a>
+  </div>
+</section>
+<section class="seccionTextoCentrada">
+  <h2>Explora nuestros talleres</h2>
+   <div class="nav-botones">
+    <a href="#electro" class="btn-cute">
+      <!-- Electrónica: chip -->
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+        <rect x="9" y="9" width="6" height="6" rx="1"/>
+        <path d="M3 9h3M3 15h3M18 9h3M18 15h3M9 3v3M15 3v3M9 18v3M15 18v3"/>
+      </svg>
+      Electrónica
+    </a>
+
+    <a href="#fis" class="btn-cute">
+      <!-- Física: átomo -->
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+        <circle cx="12" cy="12" r="1.5"/>
+        <ellipse cx="12" cy="12" rx="10" ry="4"/>
+        <ellipse cx="12" cy="12" rx="4" ry="10"/>
+      </svg>
+      Física
+    </a>
+
+    <a href="#mates" class="btn-cute">
+      <!-- Matemáticas: símbolo Pi -->
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+        <path d="M4 7h16M9 7v10c0 2-2 2-2 0M15 7v10c0 2 2 2 2 0"/>
+      </svg>
+      Matemáticas
+    </a>
+  </div>
+
+  <p>
+   Impartimos talleres de electrónica, Matemáticas y Física
+   para niños, talleres cuyo objetivo es despertar al ingeniero que
+  llevan dentro para convertir su interés en <b>amor</b> y disciplina 
+   en la ingeniería. 
+  </p>
+  <h2>¿Cómo funcionan?</h2>
+  <p>Nuestra metodología se basa en juegos dinámicos adaptados a cada taller. Usamos herramientas como
+    <b>impresión 3D</b>, componentes electrónicos y materiales reciclados para que los alumnos puedan desarrollar
+    sus ideas con libertad. Contamos con un equipo técnico capacitado que guía el proceso y asegura un aprendizaje sólido y entretenido.
+
+  </p>
+  <p>El costo de los talleres es de <b>100</b> pesos mexicanos cada hora. 
+  para más información, contáctenos en whatsapp o síganos en nuestras redes 
+sociales.</p>
+</section>
+
+<div class="seccion" id="seccion-engineering">
+  <div class="imagen">
+    <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/bot_sentado.webp" alt="Taller Ingeniería">
+  </div>
+  <div class="texto">
+    <h3>Escuela de Pequeños Ingenieros</h3>
+    <h1>La ciencia por encima de todo siempre.</h1>
+    <p>
+     En nuestra escuela de talleres electrónicos abrimos las puertas a la curiosidad, la creatividad y la innovación.
+      Aquí, los niños y jóvenes aprenden jugando a construir circuitos, programar microcontroladores y dar vida a sus ideas con la magia de la tecnología.
+      </p>
+      <ul>
+        <li>Clases dinámicas y divertidas</li>
+        <li>Proyectos prácticos paso a paso</li>
+        <li>Material didáctico adaptado para todas las edades</li>
+        <li>Profesores apasionados por la ciencia y la enseñanza</li>
+      </ul>
+      <p>No solo es aprender electrónica… es desarrollar habilidades para el futuro: lógica, trabajo en equipo, resolución de problemas y confianza en uno mismo.</p>
+  </div>
+</div>
+
+  <!-- Secciones destino -->
+  <!-- Sección de Electrónica -->
+<div id="electro" class="seccion-electronica">
+  <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/ROBOT_CON_LED.webp" alt="Electrónica" class="img-seccion">
+  <div class="contenido-seccion">
+    <h2>¿Qué es la Electrónica?</h2>
+    <p>
+      La electrónica estudia y controla el movimiento de electrones en dispositivos.
+      Es la base de gran parte de la tecnología moderna, desde celulares hasta satélites.
+    </p>
+
+    <h2>¿Qué temas impartimos?</h2>
+    <p>
+      Exploramos conceptos básicos como resistencias, capacitores y diodos, 
+      hasta microcontroladores, circuitos digitales y sistemas electrónicos aplicados.
+    </p>
+
+    <h2>¿Por qué es importante en la ingeniería?</h2>
+    <p>
+      La electrónica permite diseñar soluciones innovadoras, crear dispositivos inteligentes 
+      y desarrollar tecnologías que transforman el mundo.
+    </p>
+
+    <a href="https://wa.me/5214831050490?text=Hola,%20quiero%20más%20información%20sobre%20los%20talleres%20de%20ELECTRÓNICA%20de%20la%20escuela%20de%20pequeños%20ingenieros%20por%20favor" class="btn-cute">Quiero más información</a>
+  </div>
+</div>
+
+
+<!-- Sección de Física -->
+<div id="fis" class="seccion-fisica">
+  <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/BOT_CON_PESOS.webp" alt="Física" class="img-seccion">
+  <div class="contenido-seccion">
+    <h2>¿Qué es la Física?</h2>
+    <p>
+      La física estudia las leyes fundamentales del universo, 
+      desde el movimiento de los planetas hasta las partículas más pequeñas de la materia.
+    </p>
+
+    <h2>¿Qué temas impartimos?</h2>
+    <p>
+      Mecánica, electricidad, magnetismo, ondas, óptica, termodinámica 
+      y temas modernos como física cuántica y relatividad.
+    </p>
+
+    <h2>¿Por qué es importante en la ingeniería?</h2>
+    <p>
+      La física es la base de todas las ingenierías. 
+      Permite diseñar estructuras seguras, innovar en energía y crear nuevas tecnologías.
+    </p>
+
+    <a href="https://wa.me/5214831050490?text=Hola,%20quiero%20más%20información%20sobre%20los%20talleres%20de%20FÍSICA%20de%20la%20escuela%20de%20pequeños%20ingenieros%20por%20favor" class="btn-cute">Quiero más información</a>
+  </div>
+</div>
+
+
+<!-- Sección de Matemáticas -->
+<div id="mates" class="seccion-matematicas">
+  <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/bot_con_lentes.webp" alt="Matemáticas" class="img-seccion">
+  <div class="contenido-seccion">
+    <h2>¿Qué son las Matemáticas?</h2>
+    <p>
+      Las matemáticas son el lenguaje universal de la ciencia, 
+      usadas para describir, analizar y predecir fenómenos de la naturaleza y la tecnología.
+    </p>
+
+    <h2>¿Qué temas impartimos?</h2>
+    <p>
+      Álgebra, geometría, cálculo, probabilidad y estadística, 
+      además de aplicaciones en ingeniería.
+    </p>
+
+    <h2>¿Por qué son importantes en la ingeniería?</h2>
+    <p>
+      Son esenciales para diseñar puentes, programar computadoras, analizar datos 
+      y construir el futuro con bases sólidas.
+    </p>
+
+    <a href="https://wa.me/5214831050490?text=Hola,%20quiero%20más%20información%20sobre%20los%20talleres%20de%20MATEMÁTICAS%20de%20la%20escuela%20de%20pequeños%20ingenieros%20por%20favor" class="btn-cute">Quiero más información</a>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-container">
+    <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/bot_verde_loco.webp" alt="">
+    <p>&copy; 2025 Escuela de Pequeños Ingenieros. Todos los derechos reservados.</p>
+    <p>
+      📍 <a href="https://www.google.com/maps/place/Escuela+de+Peque%C3%B1os+Ingenieros/@21.255386,-98.7524338,17z/data=!3m1!4b1!4m6!3m5!1s0x85d6ebd2721c504d:0x6fce41e1729c442a!8m2!3d21.255386!4d-98.7498589!16s%2Fg%2F11wj5rdzx2?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+        Ver ubicación en Google Maps
+      </a>
+      <p>Cualquier duda puede contactarnos con nuestras redes sociales o enviar un correo a <a href="tallerdepequenosingenieros@gmail.com ">tallerdepequenosingenieros@gmail.com </a></p>
+    
+    </p>
+  </div>
+</footer>
+    </body>
+    <script>
+  // Detectar cuando el div entra en pantalla
+  const seccion = document.getElementById("seccion-engineering");
+  const imagen = seccion.querySelector(".imagen");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          imagen.classList.add("visible");
+        }, 1500); // 1.5 segundos de delay
+      }
+    });
+  });
+
+  observer.observe(seccion);
+</script>
+</html>
