@@ -1,163 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>EPI · Registro de Alumnos</title>
+<meta charset="UTF-8">
+<title>EPI · Internal Records</title>
 
-  <style>
-    body {
-      margin: 0;
-      background: #0b1220;
-      color: #e6ecff;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-    }
+<style>
+body {
+  margin: 0;
+  background: #0b1220;
+  color: #e6ecff;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 50px auto;
-      padding: 30px;
-      background: #101a33;
-      border-radius: 12px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-    }
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  background: #0b1220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-    h1 {
-      margin-bottom: 25px;
-      font-size: 22px;
-      letter-spacing: 1px;
-      color: #8fb5ff;
-      text-transform: uppercase;
-    }
+.lock-box {
+  background: #101a33;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,0,0,.7);
+  text-align: center;
+  width: 320px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
+.lock-box h2 {
+  margin-bottom: 20px;
+  color: #8fb5ff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
 
-    thead {
-      background: #16224a;
-    }
+.lock-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #24366b;
+  background: #0b1220;
+  color: #e6ecff;
+  margin-bottom: 15px;
+  outline: none;
+}
 
-    th {
-      padding: 14px;
-      text-align: left;
-      font-weight: 600;
-      color: #ff6b6b;
-      border-bottom: 2px solid #24366b;
-    }
+.lock-box input:focus {
+  border-color: #ff6b6b;
+}
 
-    td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #24366b;
-      color: #dbe3ff;
-    }
+.lock-box button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #3a7bd5, #ff6b6b);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
 
-    tbody tr:hover {
-      background: #18275a;
-    }
+.lock-box .error {
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-size: 12px;
+}
 
-    .badge {
-      padding: 4px 10px;
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+/* ---- PANEL ---- */
 
-    .mensual {
-      background: rgba(79, 140, 255, 0.15);
-      color: #4f8cff;
-    }
+.container {
+  max-width: 1150px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #101a33;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,0,0,.6);
+  display: none;
+}
 
-    .modulo {
-      background: rgba(255, 107, 107, 0.15);
-      color: #ff6b6b;
-    }
+h1 {
+  color: #8fb5ff;
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
 
-    .footer {
-      margin-top: 20px;
-      text-align: right;
-      font-size: 12px;
-      color: #6f84c7;
-      opacity: 0.7;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
 
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #8fb5ff;
-      font-size: 15px;
-      letter-spacing: 1px;
-    }
-  </style>
+thead {
+  background: #16224a;
+}
+
+th {
+  padding: 14px;
+  color: #ff6b6b;
+  text-align: left;
+  border-bottom: 2px solid #24366b;
+}
+
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #24366b;
+}
+
+tbody tr {
+  transition: all 0.4s ease;
+}
+
+tbody tr.fade-out {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+tbody tr:hover {
+  background: #18275a;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.mensual {
+  background: rgba(79,140,255,.15);
+  color: #4f8cff;
+}
+
+.modulo {
+  background: rgba(255,107,107,.15);
+  color: #ff6b6b;
+}
+
+.delete-btn {
+  background: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all .25s ease;
+}
+
+.delete-btn:hover {
+  background: #ff6b6b;
+  color: #0b1220;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #8fb5ff;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  opacity: .6;
+  text-align: right;
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Registro interno de alumnos · EPI</h1>
 
-    <div id="loading" class="loading">CARGANDO REGISTROS…</div>
-
-    <table id="table" style="display:none">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Teléfono</th>
-          <th>Edad</th>
-          <th>Tipo de pago</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-
-    <div class="footer">
-      Acceso interno · Uso administrativo
-    </div>
+<!-- LOCK SCREEN -->
+<div class="lock-screen" id="lock">
+  <div class="lock-box">
+    <h2>Restricted Access</h2>
+    <input type="password" id="password" placeholder="Enter authorization code">
+    <button onclick="unlock()">Access</button>
+    <div class="error" id="error"></div>
   </div>
+</div>
 
-  <script>
-    const API_URL = "https://epi-backend-walj.onrender.com/students";
+<!-- PANEL -->
+<div class="container" id="panel">
+  <h1>Internal Student Records</h1>
 
-    async function loadStudents() {
-      try {
-        const res = await fetch(API_URL);
-        const students = await res.json();
+  <div id="loading" class="loading">ACCESSING DATABASE…</div>
 
-        const tbody = document.getElementById("tbody");
+  <table id="table" style="display:none">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Edad</th>
+        <th>Pago</th>
+        <th>Fecha</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
 
-        students.forEach(s => {
-          const tr = document.createElement("tr");
+  <div class="footer">Confidential · Administrative use only</div>
+</div>
 
-          const date = new Date(s.createdAt).toLocaleString();
+<script>
+const SECRET = "PEQUENOS_ING_1984";
+const API = "https://epi-backend-walj.onrender.com";
 
-          tr.innerHTML = `
-            <td>${s.name}</td>
-            <td>${s.phone}</td>
-            <td>${s.age}</td>
-            <td>
-              <span class="badge ${s.paymentType}">
-                ${s.paymentType}
-              </span>
-            </td>
-            <td>${date}</td>
-          `;
-
-          tbody.appendChild(tr);
-        });
-
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("table").style.display = "table";
-
-      } catch (err) {
-        document.getElementById("loading").innerText =
-          "ERROR AL CARGAR LOS DATOS";
-      }
-    }
-
+function unlock() {
+  const input = document.getElementById("password").value;
+  if (input === SECRET) {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("panel").style.display = "block";
     loadStudents();
-  </script>
+  } else {
+    document.getElementById("error").innerText = "ACCESS DENIED";
+  }
+}
+
+async function loadStudents() {
+  const res = await fetch(`${API}/students`);
+  const students = await res.json();
+
+  const tbody = document.getElementById("tbody");
+
+  students.forEach(s => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${s.name}</td>
+      <td>${s.phone}</td>
+      <td>${s.age}</td>
+      <td><span class="badge ${s.paymentType}">${s.paymentType}</span></td>
+      <td>${new Date(s.createdAt).toLocaleString()}</td>
+      <td>
+        <button class="delete-btn" onclick="deleteStudent('${s._id}', this)">
+          DELETE
+        </button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("table").style.display = "table";
+}
+
+async function deleteStudent(id, btn) {
+  if (!confirm("¿Eliminar este registro permanentemente?")) return;
+
+  const row = btn.closest("tr");
+  row.classList.add("fade-out");
+
+  await fetch(`${API}/students/${id}`, { method: "DELETE" });
+
+  setTimeout(() => row.remove(), 400);
+}
+</script>
+
 </body>
 </html>
