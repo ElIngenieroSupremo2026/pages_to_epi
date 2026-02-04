@@ -1,275 +1,163 @@
-<html>
-    <head>
-   <link href="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/style.css" rel="stylesheet">
-   <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/SYMBOL.webp">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>EPI · Registro de Alumnos</title>
 
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<title>Escuela de Pequeños Ingenieros</title>
-   <style>
-    
-   </style>
-    </head>
+  <style>
+    body {
+      margin: 0;
+      background: #0b1220;
+      color: #e6ecff;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
 
-    <body>
+    .container {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #101a33;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    }
 
-        <div class="social-icons">
-    <a href="https://www.tiktok.com/@esc_peques_ingenieros?_t=ZS-8zp11YUFrcN&_r=1" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
-    <a href="https://instagram.com" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.youtube.com/@EscueladePequenosIngenierosAC" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.facebook.com/share/1B8jCVLN8q/" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://whatsapp.com/channel/0029VbAhNNRLY6d5JWVAqa1y" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://x.com" target="_blank" class="twitter"><i class="fab fa-x-twitter"></i></a>
+    h1 {
+      margin-bottom: 25px;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #8fb5ff;
+      text-transform: uppercase;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead {
+      background: #16224a;
+    }
+
+    th {
+      padding: 14px;
+      text-align: left;
+      font-weight: 600;
+      color: #ff6b6b;
+      border-bottom: 2px solid #24366b;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #24366b;
+      color: #dbe3ff;
+    }
+
+    tbody tr:hover {
+      background: #18275a;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .mensual {
+      background: rgba(79, 140, 255, 0.15);
+      color: #4f8cff;
+    }
+
+    .modulo {
+      background: rgba(255, 107, 107, 0.15);
+      color: #ff6b6b;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 12px;
+      color: #6f84c7;
+      opacity: 0.7;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #8fb5ff;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Registro interno de alumnos · EPI</h1>
+
+    <div id="loading" class="loading">CARGANDO REGISTROS…</div>
+
+    <table id="table" style="display:none">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Edad</th>
+          <th>Tipo de pago</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <div class="footer">
+      Acceso interno · Uso administrativo
+    </div>
   </div>
-       <header class="topbar">
-<div class="container">
-<!-- Logo / marca -->
-<a href="#" class="brand">
-<span class="logo" aria-hidden></span>
-<span>Escuela de Pequeños Ingenieros</span>
-</a>
 
+  <script>
+    const API_URL = "https://epi-backend-walj.onrender.com/students";
 
-<!-- Toggle visible en móvil (sin JS - usa atributo data para control si decides agregar JS) -->
-<button class="menu-toggle" aria-expanded="false" aria-controls="main-menu" onclick="document.getElementById('main-menu').classList.toggle('show'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')">
-☰
-</button>
+    async function loadStudents() {
+      try {
+        const res = await fetch(API_URL);
+        const students = await res.json();
 
+        const tbody = document.getElementById("tbody");
 
+        students.forEach(s => {
+          const tr = document.createElement("tr");
 
-<!-- Menú principal -->
-<nav aria-label="Principal">
-<ul class="menu" id="main-menu">
-<li><a href="index.html">Inicio</a></li>
-  <li>
-    <a href="talleres.html">Talleres</a>
-    
-  </li>
-  <li>
-    <a href="asfisica.html">Asesorías</a>
-    
-  </li>
-    <li>
-    <a href="#">Deportes</a>
-    
-  </li>
-<li><a href="https://www.google.com/maps/place/Escuela+de+Peque%C3%B1os+Ingenieros/@21.255386,-98.7524338,17z/data=!3m1!4b1!4m6!3m5!1s0x85d6ebd2721c504d:0x6fce41e1729c442a!8m2!3d21.255386!4d-98.7498589!16s%2Fg%2F11wj5rdzx2?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D">Encuéntranos</a></li>
-</ul>
-</nav>
-</div>
-</header>
-<section class="seccionVideoFondo">
-  <video autoplay muted loop playsinline class="video-fondo">
-    <source src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/fondo_electronic.mp4" type="video/mp4">
-  </video>
+          const date = new Date(s.createdAt).toLocaleString();
 
-  <div class="overlay"></div>
-  <div class="contenidoVideoFondo">
-    <h1 id="textoCambiante">Bienvenido a nuestras instalaciones</h1>
-    <p id="textoCambiante2">Conoce el lugar donde nace la innovación</p>
-    <a href="https://www.google.com/maps/place/Escuela+de+Peque%C3%B1os+Ingenieros/@21.255386,-98.7524338,17z/data=!3m1!4b1!4m6!3m5!1s0x85d6ebd2721c504d:0x6fce41e1729c442a!8m2!3d21.255386!4d-98.7498589!16s%2Fg%2F11wj5rdzx2?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="ctas">Mira nuestra Ubicación</a>
-  </div>
-</section>
-<div class="galeria">
- <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/we.webp"alt="Imagen 1">
-  <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/JARTEH_WITHT_IRVING.webp" alt="Imagen 2">
-<img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/DAVID_AND_JARETH_IN_FRONT_OF_SCHOOL.webp" alt="Imagen 3">
-<img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/IRVING_AND_DAVID.webp" alt="Imagen 4">
-</div>
-    
-    
-        <div class="hola upper">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#fff" fill-opacity="1" d="M0,224L34.3,224C68.6,224,137,224,206,208C274.3,192,343,160,411,122.7C480,85,549,43,617,42.7C685.7,43,754,85,823,96C891.4,107,960,85,1029,106.7C1097.1,128,1166,192,1234,202.7C1302.9,213,1371,171,1406,149.3L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+          tr.innerHTML = `
+            <td>${s.name}</td>
+            <td>${s.phone}</td>
+            <td>${s.age}</td>
+            <td>
+              <span class="badge ${s.paymentType}">
+                ${s.paymentType}
+              </span>
+            </td>
+            <td>${date}</td>
+          `;
 
-    </div>
-    <div class="hola">
-        <h1 >¿Qui&eacute;nes somos?</h1>
-    <p>La <b>Escuela de Pequeños Ingenieros</b> es una escuela privada que cuenta con el apoyo de numerosas Organizaciones para su mayor desempeño.</p>
-        <p>Otorgamos cursos y talleres principalmente para niños y adolecentes de primaria, secundaria y bachillerato
+          tbody.appendChild(tr);
+        });
 
-relacionados con los ámbitos que las ingenierías actuales exigen: matemáticas, electrónica, programación , entre otras.
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("table").style.display = "table";
 
-hemos estado difundiendo la ciencia desde el <b>2016</b>.
+      } catch (err) {
+        document.getElementById("loading").innerText =
+          "ERROR AL CARGAR LOS DATOS";
+      }
+    }
 
-Desde sus orígenes en Tamazunchale, nuestra escuela ha compartido el conocimiento de la ingeniería con la comunidad local. Hoy, con la misma vocación, renace para ampliar sus conocimientos a nuevos horizontes.</p>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#fff" fill-opacity="1" d="M0,128L20,128C40,128,80,128,120,149.3C160,171,200,213,240,240C280,267,320,277,360,240C400,203,440,117,480,96C520,75,560,117,600,122.7C640,128,680,96,720,74.7C760,53,800,43,840,53.3C880,64,920,96,960,106.7C1000,117,1040,107,1080,138.7C1120,171,1160,245,1200,245.3C1240,245,1280,171,1320,165.3C1360,160,1400,224,1420,256L1440,288L1440,0L1420,0C1400,0,1360,0,1320,0C1280,0,1240,0,1200,0C1160,0,1120,0,1080,0C1040,0,1000,0,960,0C920,0,880,0,840,0C800,0,760,0,720,0C680,0,640,0,600,0C560,0,520,0,480,0C440,0,400,0,360,0C320,0,280,0,240,0C200,0,160,0,120,0C80,0,40,0,20,0L0,0Z"></path></svg><p></p>
-    </div>
-    <div class="slider">
-        <h2>Descubre lo más reciente de la ciencia en la Huasteca Potosina</h2>
-  <div class="slides">
-    <div class="slide">
-      <div>
-        <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/ABEL_enseñando .jpg" alt="Imagen 1"></div> 
-        <p>Ingeniero en electrónica repara su auto con arduino.</p>
-      <a href="https://write.as/tiempodedebate/" class="slide-btn">Visitanos</a>
-    </div>
-        <div class="slide">
-      <div>
-        <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/DAVID_AND_JARETH_IN_FRONT_OF_SCHOOL.webp" alt="Imagen 1"></div> 
-        <p>Alumnos de E.P.I. dan clases en telesecundaria</p>
-      <a href="https://write.as/tiempodedebate/" class="slide-btn">Visitanos</a>
-    </div>
-    
-   
-    <!-- agrega más slides si quieres -->
-  </div>
-</div>
-
-    
-    <div class="hola upper">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#fff" fill-opacity="1" d="M0,224L34.3,224C68.6,224,137,224,206,208C274.3,192,343,160,411,122.7C480,85,549,43,617,42.7C685.7,43,754,85,823,96C891.4,107,960,85,1029,106.7C1097.1,128,1166,192,1234,202.7C1302.9,213,1371,171,1406,149.3L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
-
-    </div>
-    <div class="hola">
-        <h1 >Nuestra Visi&oacute;n</h1>
-            <p>La Escuela de Pequeños Ingenieros nace con la misión de despertar en niños y jóvenes el espíritu creador que caracteriza a nuestra nación. Creemos firmemente que el futuro de México se construye desde la práctica, brindando a las nuevas generaciones las herramientas para transformar su entorno con conocimiento, disciplina y creatividad.</p>
-        <p>Nuestro propósito es claro: acercar a estudiantes de primaria, secundaria y bachillerato al apasionante mundo de la ingeniería, a través de áreas fundamentales como la electrónica, matemáticas, física y programación. Aquí no sólo enseñamos conceptos, sino que fomentamos la capacidad de pensar, diseñar y resolver problemas con ingenio y determinación. Contamos con un equipo de ingenieros y técnicos altamente capacitados, que transmiten su experiencia y pasión de manera práctica y cercana. Además, ponemos a disposición de nuestros estudiantes una amplia variedad de materiales y recursos para que el aprendizaje sea dinámico, real y accesible.</p>
-
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#fff" fill-opacity="1" d="M0,128L20,128C40,128,80,128,120,149.3C160,171,200,213,240,240C280,267,320,277,360,240C400,203,440,117,480,96C520,75,560,117,600,122.7C640,128,680,96,720,74.7C760,53,800,43,840,53.3C880,64,920,96,960,106.7C1000,117,1040,107,1080,138.7C1120,171,1160,245,1200,245.3C1240,245,1280,171,1320,165.3C1360,160,1400,224,1420,256L1440,288L1440,0L1420,0C1400,0,1360,0,1320,0C1280,0,1240,0,1200,0C1160,0,1120,0,1080,0C1040,0,1000,0,960,0C920,0,880,0,840,0C800,0,760,0,720,0C680,0,640,0,600,0C560,0,520,0,480,0C440,0,400,0,360,0C320,0,280,0,240,0C200,0,160,0,120,0C80,0,40,0,20,0L0,0Z"></path></svg><p></p>
-
-    </div>
-        <div class="video-container">
-  <iframe width="560" height="315" 
-    src="https://www.youtube.com/embed/SNky4GZZG30"
-
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
-<div class="hola upper">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#fff" fill-opacity="1" d="M0,224L34.3,224C68.6,224,137,224,206,208C274.3,192,343,160,411,122.7C480,85,549,43,617,42.7C685.7,43,754,85,823,96C891.4,107,960,85,1029,106.7C1097.1,128,1166,192,1234,202.7C1302.9,213,1371,171,1406,149.3L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
-
-    </div>
-    <div class="hola">
-        <h1 >Asesor&iacute;as y talleres</h1>
-<p>En la Escuela de Pequeños Ingenieros ofrecemos talleres que inspiran el ingenio y refuerzan el espíritu creador de nuestra nación.</p>
-<center><h2>Nuestros Talleres</h2></center>
-    <div class="materias">
-  <button>
-    <!-- Electrónica -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M12 2v4M12 18v4M4 12h4M16 12h4M7 7l2.5 2.5M14.5 14.5L17 17" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-    <a href="talleres.html#electro">Electrónica</a>
-  </button>
-
-  <button>
-    <!-- Matemáticas -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M4 7h16M4 17h16M12 3v18" />
-    </svg>
-    <a href="talleres.html#mates">Matemáticas</a>
-  </button>
-
-  <button>
-    <!-- Física -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="3" />
-      <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
-    </svg>
-    <a href="talleres.html#fis">Física</a>
-  </button>
-</div>
-<center><h2>Asesorías impartidas por profesionistas</h2></center>
-<div class="materiasAs">
-
-
-  <button>
-    <!-- Matemáticas -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-  <path d="M6 4h12l-8 8 8 8H6"/>
-</svg>
-    <a href="asfisica.html">Matemáticas</a>
-  </button>
-
-  <button>
-    <!-- Física -->
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-  <path d="M2 12c2-8 6 8 10 0s8 8 10 0" />
-</svg>
-
-    <a href="asfisica.html">Física</a>
-  </button>
-</div>
-</div>
-</div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#fff" fill-opacity="1" d="M0,128L20,128C40,128,80,128,120,149.3C160,171,200,213,240,240C280,267,320,277,360,240C400,203,440,117,480,96C520,75,560,117,600,122.7C640,128,680,96,720,74.7C760,53,800,43,840,53.3C880,64,920,96,960,106.7C1000,117,1040,107,1080,138.7C1120,171,1160,245,1200,245.3C1240,245,1280,171,1320,165.3C1360,160,1400,224,1420,256L1440,288L1440,0L1420,0C1400,0,1360,0,1320,0C1280,0,1240,0,1200,0C1160,0,1120,0,1080,0C1040,0,1000,0,960,0C920,0,880,0,840,0C800,0,760,0,720,0C680,0,640,0,600,0C560,0,520,0,480,0C440,0,400,0,360,0C320,0,280,0,240,0C200,0,160,0,120,0C80,0,40,0,20,0L0,0Z"></path></svg><p></p>
-
-    <footer class="footer">
-  <div class="footer-container">
-    <img src="https://cdn.jsdelivr.net/gh/ElIngenieroSupremo2026/epi_page_elements/img/bot_verde_loco.webp" alt="">
-    <p>&copy; 2025 Escuela de Pequeños Ingenieros. Todos los derechos reservados.</p>
-    <p>
-      📍 <a href="https://www.google.com/maps/place/Escuela+de+Peque%C3%B1os+Ingenieros/@21.255386,-98.7524338,17z/data=!3m1!4b1!4m6!3m5!1s0x85d6ebd2721c504d:0x6fce41e1729c442a!8m2!3d21.255386!4d-98.7498589!16s%2Fg%2F11wj5rdzx2?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-        Ver ubicación en Google Maps
-      </a>
-      <p>Cualquier duda puede contactarnos con nuestras redes sociales o enviar un correo a <a href="tallerdepequenosingenieros@gmail.com ">tallerdepequenosingenieros@gmail.com </a></p>
-    
-    </p>
-  </div>
-</footer>
-<script>
-  const textosArriba = [
-    "En la Escuela de Pequeños Ingenieros",
-    "Ponemos La Ciencia por encima de todo",
-    "pues los niños ya son ingenieros",
-    "Sólo les falta crecer"
-  ];
-
-  const textosAbajo = [
-    "Conoce el lugar donde nace la innovación",
-    "Explora nuestros talleres y asesorías",
-    "Aprende con la mejor experiencia educativa",
-    "Sé parte de nuestra comunidad creativa"
-  ];
-
-  let indice = 0;
-  const textoCambiante = document.getElementById("textoCambiante");
-  const textoCambiante2 = document.getElementById("textoCambiante2");
-
-  setInterval(() => {
-    // Fade out
-    textoCambiante.style.opacity = 0;
-    textoCambiante2.style.opacity = 0;
-
-    setTimeout(() => {
-      indice = (indice + 1) % textosArriba.length;
-      textoCambiante.textContent = textosArriba[indice];
-      textoCambiante2.textContent = textosAbajo[indice];
-
-      // Fade in
-      textoCambiante.style.opacity = 1;
-      textoCambiante2.style.opacity = 1;
-    }, 500); // medio segundo para transición
-  }, 2000);
-   const slider = document.getElementById('horasInput');
-  const valorHoras = document.getElementById('valorHorasInput');
-  const dias = document.querySelectorAll('.diaInput');
-  const diasSeleccionados = document.getElementById('diasSeleccionadosInput');
-  const total = document.getElementById('totalInput');
-
-  function actualizar() {
-    valorHoras.textContent = slider.value;
-
-    const diasActivos = [];
-    dias.forEach(d => { if(d.checked) diasActivos.push(d.value) });
-    diasSeleccionados.textContent = diasActivos.length ? diasActivos.join(', ') : 'Ninguno';
-
-    total.textContent = diasActivos.length * slider.value * 100;
-  }
-
-  slider.addEventListener('input', actualizar);
-  dias.forEach(d => d.addEventListener('change', actualizar));
-
-  actualizar();
-</script>
-
+    loadStudents();
+  </script>
+</body>
 </html>
-
-
-
-
